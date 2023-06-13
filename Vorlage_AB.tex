@@ -1,0 +1,84 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage{ifthen}
+\usepackage{forloop}
+\usepackage{xfp}
+\usepackage{tikz,pgfplots}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{layout}
+\usepackage[head=30pt]{geometry}
+\usepackage{tasks}
+\usepackage{changepage}
+\pagestyle{scrheadings}
+\setlength{\parindent}{0pt} % Einrückung deaktivieren
+
+\onehalfspacing
+
+\newcommand{\FACH}{Fach}
+\newcommand{\KLASSE}{Kl.}
+\newcommand{\DATUM}{XX.YY.ZZZZ}
+%% Über den jeweiligen Typ wird bei Klassenarbeit und Leistungskontrolle das Erwartungsbild und der Notenspiegel als anhängende Seite kompiliert. Der Befehl \aufgabe besitzt beim Typ Arbeitsblatt einen Parameter für die Aufgabenstellung. Bei den Typen Klassenarbeit und Leistungskontrolle kommen noch zwei weitere Parameter für die Punktzahl und das Erwartungsbild hinzu.
+%\newcommand{\TYP}{Arbeitsblatt}
+\newcommand{\TYP}{Klassenarbeit}
+%\newcommand{\TYP}{Leistungskontrolle}
+\newcommand{\EINHEIT}{Stoffeinheit}
+\newcommand{\THEMA}{Thema}
+\newcommand{\LEHRER}{N.N.}
+%% Dieser "Switch" bewirkt, dass für Lückentexte die Lösung angezeigt oder ausgeblendet wird. Aktuell werden die Lücken jedoch noch nicht berücksichtigt. Vielleicht gibt es auch eine bessere Lösung für diesen "Switch"...
+%\newcommand{\LOSUNG}{true}
+\newcommand{\LOSUNG}{false}
+
+%\input{%Pfad zur Datei "Commands.tex%}
+
+\begin{document}
+\TITEL
+
+\aufgabe{Berechne}{4}{Im Erwartungsbild kann für die Bewertung angegeben werden, welche Anforderungen an die Lösung der Aufgabe gestellt wurden und für welche Operationen es Punkte gibt.}
+Der Befehl \texttt{\textbackslash aufgabe\{\}} beziehungsweise \texttt{\textbackslash aufgabe\{\}\{\}\{\}} ermöglicht die Erstellung einer Aufgabe, welche auch im Erwartungsbild aufgelistet wird. Der erste Parameter gibt die Aufgabenstellung an. Hierzu wird die Umgebung der Subsection genutzt. Der zweite Parameter gibt die Punktzahl der Aufgabe an. Der dritte Parameter beinhaltet das Erwartungsbild, welches in der Tabelle im Erwartungsbild aufgelistet wird.
+
+\begin{tasks}(2)
+	\task Über Tasks können Teilaufgaben gestellt werden
+	\task Hierzu kann man die Anzahl der Spalten angeben. Für genauere Infos sollte die Dokumentation des Packages gelesen werden.	
+\end{tasks}
+
+Ein Feld mit kariertem Papier kann mit dem Befehl \texttt{\textbackslash kariert[]\{\}} erzeugt werden. Standardmäßig ist die Breite auf eine ganze Seite eingestellt. Mit dem ersten optionalen Parameter kann hier auch eine andere Zentimeter-Angabe erfolgen. Der zweite Parameter gibt an, wie hoch das Feld sein soll.
+
+\kariert{2}
+
+\aufgabe{Noch eine Aufgabe}{3}{Die Punkte der einzelnen Aufgaben werden zusammenaddiert um die Maximalpunktzahl ausgeben zu können. Diese Maximalpunktzahl wird auch für die Berechnung der Notentabelle genutzt. Diese ist auf Mecklenburg-Vorpommern ausgelegt und bedarf gegebenenfalls eigene Anpassungen}
+
+Beschreibbare Linien können mittels \texttt{\textbackslash liniert[]} erzeugt werden. Als Länge wird immer \texttt{\textbackslash textwidth} genommen. Über den optionalen Parameter wird die Anzahl der Linien angegeben. Ohne Angabe des Parameters wird eine Linie ausgegeben.
+
+\liniert[3]
+
+\aufgabe{Mathematische Hilfsmittel}{0}{}
+
+Aus eigenem Anlass wurden die Funktionen \texttt{\textbackslash kreisbruch[Farbe]\{Zähler\}\{Nenner\}} und \texttt{\textbackslash rechteckbruch[Farbe]\{Zähler\}\{Nenner\}} erstellt. Diese ermöglichen es verschiedene Brüche als Kreis beziehungsweise als Rechteck darzustellen. Beim kreis wird ein Einheitskreis in die entsprechende Anzahl an Bruchteilen eingeteilt. und entsprechend des Zählers eingefärbt. Beim Rechteck werden technisch gesehen mehrere Rechtecke unter Angabe des Nenners nebeneinander gezeichnet.
+
+\kreisbruch[green]{3}{5} + \kreisbruch[red]{2}{4}
+
+\rechteckbruch[blue]{5}{6}
+
+Über den Befehl \texttt{\textbackslash funktion\{funktion\}\{xmin\}\{xmax\}\{ymin\}\{ymax\}\{Farbe\}} können einzelne Funktione auf schnelle Art und Weise gezeichnet werden
+
+\funktion{x^2}{-5}{5}{0}{10}{red}
+
+\aufgabe{Lückentexte}{0}{Das Erwartungsbild kann auch leer bleiben, wie man sieht. Als Punktzahl können nur Zahlen eingetragen werden.}
+
+Ein Lückentext kann über die Umgebung \texttt{\textbackslash begin\{LKtext\}} benutzt werden. In dieser kann dann mittels \texttt{\textbackslash lk\{\}} eine Lücke definiert werden, welche sich an die Länge des Wortes anpasst. Der Zeilenabstand ist in einem Lückentext auch größer, sodass mehr Platz zum Schreiben bleibt.
+ 
+\begin{LKtext}
+	Dies ist ein \lk{Lückentext}.
+	
+	Und ein zweiter Absatz mit \lk{Lücke}.
+
+	Es geht sogar noch mehr Text mit \lk{Lücken}!
+	
+\end{LKtext}
+
+
+%\input{%Pfad zur Datei "Erwartungsbild.tex%}
+
+
+\end{document}
