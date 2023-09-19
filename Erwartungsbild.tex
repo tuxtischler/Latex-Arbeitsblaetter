@@ -10,7 +10,7 @@
 	\newcounter{fori}
 	\setcounter{fori}{1}
 	\renewcommand{\arraystretch}{1.5}
-	\begin{tabular}{|p{1cm}|p{10cm}|p{1.5cm}|p{1.5cm}|}
+	\begin{tabular}{|p{1cm}|p{12cm}|p{1.5cm}|p{1.5cm}|}
 		\hline
 		Afg. & Erwartungsbild & mögliche Punkte & erreicht \\
 		\hline
@@ -23,37 +23,46 @@
   		& \raggedleft{\textbf{Note:}}& \multicolumn{2}{l|}{}  \\\hline
 	\end{tabular}
 	
-	\vspace{1.5cm}
-	\raggedleft\DATUM; \rule[0ex]{5cm}{1pt}
-	
-	\vspace{1cm}
-	Unterschrift Eltern: \rule[0ex]{5cm}{1pt}
-	\vspace{1cm}
+\begin{minipage}{0.45\textwidth}
 	\renewcommand{\arraystretch}{1}
 	\ifthenelse{\equal{\TYP}{Klassenarbeit}}{
 		\begin{center}
-		\begin{tabular}{|l||c|c|c|c|c|c|}
+		\begin{tabular}{|l||c|c|c|c|c|c||c|}
 			\hline
-			Note: & 1 & 2 & 3 & 4 & 5 & 6 \\\hline
-			Schwelle:& 96\% & 80\% & 60\% & 40\% & 20\% & 0\% \\\hline
-			Punkte:& \fpeval{round(2*0.96*\value{gesamt})/2} & \fpeval{round(2*0.8*\value{gesamt})/2} & \fpeval{round(2*0.6*\value{gesamt})/2} & \fpeval{round(2*0.4*\value{gesamt})/2} & \fpeval{round(2*0.2*\value{gesamt})/2} & \fpeval{0.0*\value{gesamt}} \\\hline
-			& & & & & &  \\
-			Notenspiegel: & & & & & & \\ 
-			& & & & & & \\\hline
+			Note: & 1 & 2 & 3 & 4 & 5 & 6 & \O\\\hline
+			Schwelle:& 96\% & 80\% & 60\% & 40\% & 20\% & 0\%&--- \\\hline
+			Punkte:& \fpeval{round(2*0.96*\value{gesamt})/2} & \fpeval{round(2*0.8*\value{gesamt})/2} & \fpeval{round(2*0.6*\value{gesamt})/2} & \fpeval{round(2*0.4*\value{gesamt})/2} & \fpeval{round(2*0.2*\value{gesamt})/2} & \fpeval{0.0*\value{gesamt}}&--- \\\hline
+			& & & & & & & \\
+			Notenspiegel: & & & & & & &\\ 
+			& & & & & & &\\\hline
 		\end{tabular}
 		\end{center}
 	}
 	{
 		\begin{center}
-		\begin{tabular}{|l||c|c|c|c|c|c|}
+		\begin{tabular}{|l||c|c|c|c|c|c||c|}
 			\hline
-			Note: & 1&2&3&4&5&6\\\hline
-			Schwelle:& 97\% & 82\% & 62\% & 46\% & 30\% & 0\% \\\hline
-			Punkte:& \fpeval{round(2*0.97*\value{gesamt})/2} & \fpeval{round(2*0.82*\value{gesamt})/2} & \fpeval{round(2*0.62*\value{gesamt})/2} & \fpeval{round(2*0.46*\value{gesamt})/2} & \fpeval{round(2*0.3*\value{gesamt})/2} & \fpeval{round(2*0.0*\value{gesamt})/2} \\\hline
-			& & & & & &  \\
-			Notenspiegel: & & & & & & \\ 
-			& & & & & & \\\hline
+			Note: & 1&2&3&4&5&6&\O\\\hline
+			Schwelle:& 97\% & 82\% & 62\% & 46\% & 30\% & 0\%&---  \\\hline
+			Punkte:& \fpeval{round(2*0.97*\value{gesamt})/2} & \fpeval{round(2*0.82*\value{gesamt})/2} & \fpeval{round(2*0.62*\value{gesamt})/2} & \fpeval{round(2*0.46*\value{gesamt})/2} & \fpeval{round(2*0.3*\value{gesamt})/2} & \fpeval{round(2*0.0*\value{gesamt})/2}&--- \\\hline
+			& & & & & &  &\\
+			Notenspiegel: & & & & & && \\ 
+			& & & & & & &\\\hline
 		\end{tabular}
 	\end{center}
 	}
-}{\noalign}
+\end{minipage}
+\hspace{0.1\textwidth}
+\begin{minipage}{0.4\textwidth}
+	\vspace{1.5cm}
+	\raggedleft\DATUM; \rule[0ex]{4cm}{1pt}
+	
+	\vspace{1cm}
+	\raggedleft \rule[0ex]{4cm}{1pt}
+	
+	Unterschrift Eltern
+	\vspace{1cm}
+\end{minipage}
+}
+
+%{\noalign}

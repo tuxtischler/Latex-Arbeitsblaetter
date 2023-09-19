@@ -7,10 +7,14 @@
 \usepackage{tikz,pgfplots}
 \usepackage[headsepline]{scrlayer-scrpage}
 \usepackage{layout}
-\usepackage[head=30pt]{geometry}
+\usepackage[head=1.5cm, left=1.5cm, right=1.5cm, bottom=1cm]{geometry}
 \usepackage{tasks}
 \usepackage{changepage}
 \pagestyle{scrheadings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{framed}
+\usepackage{amssymb}
 \setlength{\parindent}{0pt} % Einrückung deaktivieren
 
 \onehalfspacing
@@ -25,6 +29,7 @@
 \newcommand{\EINHEIT}{Stoffeinheit}
 \newcommand{\THEMA}{Thema}
 \newcommand{\LEHRER}{N.N.}
+\newcommand{\TIME}{Zeit}
 %% Dieser "Switch" bewirkt, dass für Lückentexte die Lösung angezeigt oder ausgeblendet wird. Aktuell werden die Lücken jedoch noch nicht berücksichtigt. Vielleicht gibt es auch eine bessere Lösung für diesen "Switch"...
 %\newcommand{\LOSUNG}{true}
 \newcommand{\LOSUNG}{false}
@@ -34,6 +39,9 @@
 \begin{document}
 \TITEL
 
+Die \LaTeX -Dateien für diese Arbeitsblatt-Vorlage findet ihr auf github unter:\\
+\url{https://github.com/tuxtischler/Latex-Arbeitsblaetter}\\
+Ich hoffe mir geht nicht zu viel Zeit flöten. Wer selbst ein paar praktische Funktionen hat, kann sie natürlich gerne einpflegen :)
 \aufgabe{Berechne}{4}{Im Erwartungsbild kann für die Bewertung angegeben werden, welche Anforderungen an die Lösung der Aufgabe gestellt wurden und für welche Operationen es Punkte gibt.}
 Der Befehl \texttt{\textbackslash aufgabe\{\}} beziehungsweise \texttt{\textbackslash aufgabe\{\}\{\}\{\}} ermöglicht die Erstellung einer Aufgabe, welche auch im Erwartungsbild aufgelistet wird. Der erste Parameter gibt die Aufgabenstellung an. Hierzu wird die Umgebung der Subsection genutzt. Der zweite Parameter gibt die Punktzahl der Aufgabe an. Der dritte Parameter beinhaltet das Erwartungsbild, welches in der Tabelle im Erwartungsbild aufgelistet wird.
 
@@ -77,8 +85,15 @@ Ein Lückentext kann über die Umgebung \texttt{\textbackslash begin\{LKtext\}} 
 	
 \end{LKtext}
 
+\aufgabe{Noch mehr Rechnen}{0}{Erwartung}
 
+%\matheaufgaben{8}{-}
+
+
+\ifthenelse{\equal{\TYP}{Arbeitsblatt}}
+{}{
 %\input{%Pfad zur Datei "Erwartungsbild.tex%}
+}
 
 
 \end{document}

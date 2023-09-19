@@ -2,9 +2,17 @@
 \renewcommand*{\headfont}{\normalfont}
 \renewcommand{\familydefault}{\sfdefault}
 
-\ihead{\FACH\ \KLASSE\ (\LEHRER)\\ \TYP}
+\ifthenelse{\equal{\TYP}{Arbeitsblatt}}{
+	\ihead{\FACH\ \KLASSE\ (\LEHRER)\\ \TYP}
 \chead{\DATUM\\ \EINHEIT}
 \ohead{Name: \rule[0ex]{3cm}{1pt}\\}
+	}
+	{\ihead{\FACH\ \KLASSE\ (\LEHRER)\\ \TYP\ (\TIME)}
+\chead{\DATUM\\ \EINHEIT}
+\ohead{Name: \rule[0ex]{3cm}{1pt}\\}
+	}
+
+
 
 %% Karierte Felder
 \newcommand{\kariert}[2][14.5]{
@@ -100,6 +108,26 @@
     \end{axis}
   \end{tikzpicture}
 }
+
+%% Automatische leichte Matheaufgaben
+%\definecolor{lightgray}{RGB}{220,220,220}
+%
+%\newcommand{\matheaufgaben}[2]{
+%	\begin{tasks}[counter-format={(tsk[a])},label-offset=1em,after-item-skip=1em](\textwidth/4)
+%	\foreach \x in {1,...,#1}{
+%		\pgfmathrandominteger{\a}{1}{100}
+%		\pgfmathrandominteger{\b}{1}{100}
+%		\pgfmathrandominteger{\operator}{1}{3}
+%		
+%		\task Berechne $\a #2[\operator] \b$.
+%		
+%		\vspace{0.5em}
+%		\begin{framed}
+%			\colorbox{lightgray}{Ergebnis:} \underline{\hspace{3em}}
+%		\end{framed}
+%	}
+%	\end{tasks}
+%}
 
 %% Lückentext
 \newenvironment{LKtext}
