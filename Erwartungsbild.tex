@@ -1,16 +1,21 @@
 
 \ifthenelse{\NOT\equal{\TYP}{Arbeitsblatt}}{
 	\newpage
+	
 	\setstretch{1}
 	\begin{huge}
 	Erwartungsbild	
 	\end{huge}
 	\\
+	\ifthenelse{\NOT\equal{\NTA}{}}{
+	\\
+	Nachteilsausgleich: \NTA
+	}{}
 	\\
 	\newcounter{fori}
 	\setcounter{fori}{1}
 	\renewcommand{\arraystretch}{1.5}
-	\begin{tabular}{|p{1cm}|p{12cm}|p{1.5cm}|p{1.5cm}|}
+	\begin{longtable}{|p{1cm}|p{12cm}|p{1.5cm}|p{1.5cm}|}
 		\hline
 		Afg. & Erwartungsbild & mögliche Punkte & erreicht \\
 		\hline
@@ -21,7 +26,7 @@
 		 &\raggedleft{\textbf{Summe:}}  & \textbf{\the\value{gesamt}} & \\
 	 	\hline
   		& \raggedleft{\textbf{Note:}}& \multicolumn{2}{l|}{}  \\\hline
-	\end{tabular}
+	\end{longtable}
 	
 \begin{minipage}{0.45\textwidth}
 	\renewcommand{\arraystretch}{1}

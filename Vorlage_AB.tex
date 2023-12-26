@@ -1,24 +1,12 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage{setspace}
-\usepackage[utf8]{inputenc}
-\usepackage{ifthen}
-\usepackage{forloop}
-\usepackage{xfp}
-\usepackage{tikz,pgfplots}
-\usepackage[headsepline]{scrlayer-scrpage}
-\usepackage{layout}
-\usepackage[head=1.5cm, left=1.5cm, right=1.5cm, bottom=1cm]{geometry}
-\usepackage{tasks}
-\usepackage{changepage}
-\pagestyle{scrheadings}
-\usepackage{hyperref}
-\usepackage{color}
-\usepackage{framed}
-\usepackage{amssymb}
-\setlength{\parindent}{0pt} % Einrückung deaktivieren
+
+\def \patha {/Pfad/zu/den/Dateien} %Pfad zu den Dateien Preamble.tex, Commands.tex, Erwartungsbild.tex
+
+\input{\patha/Preamble.tex}
 
 \onehalfspacing
 
+\newcommand{\KopfzeileBlank}{true}
 \newcommand{\FACH}{Fach}
 \newcommand{\KLASSE}{Kl.}
 \newcommand{\DATUM}{XX.YY.ZZZZ}
@@ -30,13 +18,17 @@
 \newcommand{\THEMA}{Thema}
 \newcommand{\LEHRER}{N.N.}
 \newcommand{\TIME}{Zeit}
+\newcommand{\NTA}{Hier ist Platz für Nachteilsausgleiche!}
 %% Dieser "Switch" bewirkt, dass für Lückentexte die Lösung angezeigt oder ausgeblendet wird. Aktuell werden die Lücken jedoch noch nicht berücksichtigt. Vielleicht gibt es auch eine bessere Lösung für diesen "Switch"...
 %\newcommand{\LOSUNG}{true}
 \newcommand{\LOSUNG}{false}
 
 %\input{%Pfad zur Datei "Commands.tex%}
+\input{\patha/Commands.tex}
 
 \begin{document}
+
+\large
 \TITEL
 
 Die \LaTeX -Dateien für diese Arbeitsblatt-Vorlage findet ihr auf github unter:\\
@@ -53,12 +45,12 @@ Der Befehl \texttt{\textbackslash aufgabe\{\}} beziehungsweise \texttt{\textback
 Ein Feld mit kariertem Papier kann mit dem Befehl \texttt{\textbackslash kariert[]\{\}} erzeugt werden. Standardmäßig ist die Breite auf eine ganze Seite eingestellt. Mit dem ersten optionalen Parameter kann hier auch eine andere Zentimeter-Angabe erfolgen. Der zweite Parameter gibt an, wie hoch das Feld sein soll.
 
 \kariert{2}
-
+\newpage
 \aufgabe{Noch eine Aufgabe}{3}{Die Punkte der einzelnen Aufgaben werden zusammenaddiert um die Maximalpunktzahl ausgeben zu können. Diese Maximalpunktzahl wird auch für die Berechnung der Notentabelle genutzt. Diese ist auf Mecklenburg-Vorpommern ausgelegt und bedarf gegebenenfalls eigene Anpassungen}
 
-Beschreibbare Linien können mittels \texttt{\textbackslash liniert[]} erzeugt werden. Als Länge wird immer \texttt{\textbackslash textwidth} genommen. Über den optionalen Parameter wird die Anzahl der Linien angegeben. Ohne Angabe des Parameters wird eine Linie ausgegeben.
+Beschreibbare Linien können mittels \texttt{\textbackslash liniert\{\}} erzeugt werden. Als Länge wird immer \texttt{\textbackslash textwidth} genommen. Über den optionalen Parameter wird die Anzahl der Linien angegeben. Ohne Angabe des Parameters wird eine Linie ausgegeben.
 
-\liniert[3]
+\liniert[]{2}
 
 \aufgabe{Mathematische Hilfsmittel}{0}{}
 
@@ -89,11 +81,15 @@ Ein Lückentext kann über die Umgebung \texttt{\textbackslash begin\{LKtext\}} 
 
 %\matheaufgaben{8}{-}
 
-
-\ifthenelse{\equal{\TYP}{Arbeitsblatt}}
-{}{
 %\input{%Pfad zur Datei "Erwartungsbild.tex%}
-}
+\label{LastPage}
+\normalsize
+\ifthenelse{\equal{\TYP}{Klassenarbeit}}{
+\input{\patha/Erwartungsbild.tex}}
+{}
+\ifthenelse{\equal{\TYP}{Leistungskontrolle}}{
+\input{\patha/Erwartungsbild.tex}}
+{}
 
 
 \end{document}

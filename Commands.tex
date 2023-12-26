@@ -2,23 +2,37 @@
 \renewcommand*{\headfont}{\normalfont}
 \renewcommand{\familydefault}{\sfdefault}
 
-\ifthenelse{\equal{\TYP}{Arbeitsblatt}}{
-	\ihead{\FACH\ \KLASSE\ (\LEHRER)\\ \TYP}
-\chead{\DATUM\\ \EINHEIT}
-\ohead{Name: \rule[0ex]{3cm}{1pt}\\}
+\ifthenelse{\equal{\KopfzeileBlank}{true}}{
+	\ifthenelse{\equal{\TYP}{Arbeitsblatt}}{
+		\ihead{\FACH\ \KLASSE\\ \TYP}
+		\chead{Datum: \rule[0ex]{3cm}{1pt}\\ \EINHEIT}
+		\ohead{Name: \rule[0ex]{3cm}{1pt}\\ \thepage\ von ~\pageref{LastPage}}
+	}
+	{\ihead{\FACH\ \KLASSE\\ \TYP\ (\TIME)}
+		\chead{Datum: \rule[0ex]{3cm}{1pt}\\ \EINHEIT}
+		\ohead{Name: \rule[0ex]{3cm}{1pt}\\ \thepage\ von ~\pageref{LastPage}}
+	}
+}
+	{
+	\ifthenelse{\equal{\TYP}{Arbeitsblatt}}{
+		\ihead{\FACH\ \KLASSE\ (\LEHRER)\\ \TYP}
+		\chead{\DATUM\\ \EINHEIT}
+		\ohead{Name: \rule[0ex]{3cm}{1pt}\\ \thepage\ von ~\pageref{LastPage}}
 	}
 	{\ihead{\FACH\ \KLASSE\ (\LEHRER)\\ \TYP\ (\TIME)}
-\chead{\DATUM\\ \EINHEIT}
-\ohead{Name: \rule[0ex]{3cm}{1pt}\\}
+		\chead{\DATUM\\ \EINHEIT}
+		\ohead{Name: \rule[0ex]{3cm}{1pt}\\ \thepage\ von ~\pageref{LastPage}}
+	}
 	}
 
+\ofoot{\ccLogo\ \ccAttribution\ \ccShareAlike\ \ccNonCommercialEU\ T. Tischler, \the\year{}}
 
 
 %% Karierte Felder
-\newcommand{\kariert}[2][14.5]{
+\newcommand{\kariert}[2][1]{
 	\begin{center}
 		\begin{tikzpicture}
-			\draw[step=0.5cm, color=gray] (0,0) grid (#1 cm,#2 cm);
+			\draw[step=0.5cm, color=gray] (0,0) grid (#1\linewidth,#2 cm);
 		\end{tikzpicture}
 	\end{center}
 	}
@@ -26,16 +40,16 @@
 %% Linien zum Schreiben
 \newcounter{zeilen}
 \newcounter{maxzeilen}
-\newcommand{\liniert}[1][1]{
+\newcommand{\liniert}[2][1]{
 %	\addtocounter{maxzeilen}{#1}
 	\setcounter{zeilen}{1}
-	\setcounter{maxzeilen}{#1}
+	\setcounter{maxzeilen}{#2}
 	\addtocounter{maxzeilen}{1}
 	\
 	\begin{center}
 		\forloop{zeilen}{1}{\value{zeilen} < \value{maxzeilen}}{
 	
-			\rule{\textwidth}{1pt}
+			\rule{#1\linewidth}{1pt}
 			}	
 	\end{center}
 	}
@@ -55,6 +69,9 @@
 	{\newcommand{\aufgabe}[3]{
 		\addtocounter{subsection}{1}\subsection*{Aufgabe \the\value{subsection}: #1 (#2 P.)}\addtocounter{gesamt}{#2}\expandafter\newcommand\csname punkteliste\the\value{punkte} \endcsname{#2}\stepcounter{punkte}\expandafter\newcommand\csname erwartungsliste\the\value{erwartung} \endcsname{#3}\stepcounter{erwartung}
 		}
+	}
+\newcommand{\station}[1]{
+	\addtocounter{section}{1}\section*{Station \the\value{section}: #1}
 	}
 
 %% Bruchdarstellung am Kreis
