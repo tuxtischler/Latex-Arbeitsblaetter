@@ -28,11 +28,20 @@
 \ofoot{\ccLogo\ \ccAttribution\ \ccShareAlike\ \ccNonCommercialEU\ T. Tischler, \the\year{}}
 
 
-%% Karierte Felder
-\newcommand{\kariert}[2][1]{
+%% Karierte Felder (0.5cm)
+\newcommand{\kariert}[2][\fpeval{round(\the\linewidth*0.0352777778)}]{
 	\begin{center}
 		\begin{tikzpicture}
-			\draw[step=0.5cm, color=gray] (0,0) grid (#1 cm,#2 cm);
+			\draw[step=0.5 cm, color=gray] (0,0) grid (#1 cm,#2 cm);
+		\end{tikzpicture}
+	\end{center}
+	}
+
+%% Karierte Fehler (0.75cm)
+\newcommand{\Kariert}[2][\fpeval{round(\the\linewidth*0.0352777778)}]{
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[step=0.75 cm, color=gray] (0,0) grid (#1 cm,#2 cm);
 		\end{tikzpicture}
 	\end{center}
 	}
@@ -40,7 +49,7 @@
 %% Linien zum Schreiben
 \newcounter{zeilen}
 \newcounter{maxzeilen}
-\newcommand{\liniert}[2][1]{
+\newcommand{\liniert}[2][\fpeval{round(\the\linewidth*0.0352777778)}]{
 %	\addtocounter{maxzeilen}{#1}
 	\setcounter{zeilen}{1}
 	\setcounter{maxzeilen}{#2}
@@ -53,7 +62,7 @@
 			}	
 	\end{center}
 	}
-	
+
 %% Für Punkte und Erwartungsbild am Ende
 \newcounter{punkte}
 \setcounter{punkte}{1}
@@ -73,6 +82,11 @@
 \newcommand{\station}[1]{
 	\addtocounter{section}{1}\section*{Station \the\value{section}: #1}
 	}
+
+%% Versteckte "Aufgaben"
+\newcommand{\geheim}[2]{
+		\addtocounter{subsection}{1}\addtocounter{gesamt}{#1}\expandafter\newcommand\csname punkteliste\the\value{punkte} \endcsname{#1}\stepcounter{punkte}\expandafter\newcommand\csname erwartungsliste\the\value{erwartung} \endcsname{#2}\stepcounter{erwartung}
+		}
 
 %% Bruchdarstellung am Kreis
 \newcommand*\kreisbruch[3][red]{%
@@ -166,6 +180,18 @@
   	}%
   	\item[]%
 }{\end{list}\end{adjustwidth}}
+
+\newlength{\Lkl}
+\newcommand{\Lk}[1]{
+	\ifthenelse{\equal{\LOSUNG}{true}}{
+		\textit{#1}
+	}{
+		\settowidth{\Lkl}{#1}
+		\hspace*{-0.2\Lkl}\begin{tikzpicture}[baseline={(0, -0.2)}, rounded corners=2pt]
+			\node[draw=gray!50, fill=gray!20, minimum height=0.7cm, minimum width=2\Lkl] {};
+		\end{tikzpicture}\unskip
+	}
+	}
 
 
 %% Titel anpassen
